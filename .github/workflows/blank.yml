@@ -1,2 +1,0 @@
-- name: Hugo Build
-  uses: jakejarvis/hugo-build-action@v0.74.3
