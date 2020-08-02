@@ -1,0 +1,264 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>Gary talks tech</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="" /><meta property="og:title" content="Interfaces and Reflection in Go " />
+<meta property="og:description" content="Interfaces Interfaces are abstract data types. They are used to describe all the methods for a particular method set and the signatures for the methods. Suppose we have couple of structs Banana and Apple. They both implement an interface called Fruit. A Fruit can have a color and lets say price.
+//Fruit Interface type Fruit interface { getColor() string getPrice() int } In order for Banana struct to be a fruit it has to implement two methods getColor and getPrice." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gary-techs.github.io/posts/interface-golang/" />
+<meta property="article:published_time" content="2020-01-31T16:53:14+04:00" />
+<meta property="article:modified_time" content="2020-01-31T16:53:14+04:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Interfaces and Reflection in Go "/>
+<meta name="twitter:description" content="Interfaces Interfaces are abstract data types. They are used to describe all the methods for a particular method set and the signatures for the methods. Suppose we have couple of structs Banana and Apple. They both implement an interface called Fruit. A Fruit can have a color and lets say price.
+//Fruit Interface type Fruit interface { getColor() string getPrice() int } In order for Banana struct to be a fruit it has to implement two methods getColor and getPrice."/>
+
+<meta name="generator" content="Hugo 0.74.3" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://gary-techs.github.io/fontawesome/css/all.min.css" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  
+  
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Gary talks tech</a>
+            </h1>
+
+      <ul id="social-media">
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About Gary</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Interfaces and Reflection in Go </h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-01-31T16:53:14&#43;04:00">Jan 31, 2020</time>
+        </li>
+        
+
+        
+
+        <li>3 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    
+<div class="featured_image">
+    <a href="https://gary-techs.github.io/posts/interface-golang/" title="Interfaces and Reflection in Go ">
+        <img src="">
+    </a>
+</div>
+
+
+
+    <h2 id="interfaces">Interfaces</h2>
+<p>Interfaces are abstract data types. They are used to describe all the methods for a particular <strong>method set</strong> and the signatures for the methods. Suppose we have couple of <em>structs</em> Banana and Apple. They both implement an interface called Fruit. A Fruit can have a color and lets say price.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">//Fruit Interface
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Fruit</span> <span style="color:#66d9ef">interface</span> {
+    <span style="color:#a6e22e">getColor</span>() <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">getPrice</span>() <span style="color:#66d9ef">int</span>
+}
+</code></pre></div><p>In order for Banana struct to be a fruit it has to implement two methods getColor and getPrice.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">//Banana Struct
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Banana</span> <span style="color:#66d9ef">struct</span> {
+    <span style="color:#a6e22e">color</span> <span style="color:#66d9ef">string</span>
+    <span style="color:#a6e22e">price</span> <span style="color:#66d9ef">int</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">b</span> <span style="color:#a6e22e">Banana</span>) <span style="color:#a6e22e">getColor</span>() <span style="color:#66d9ef">string</span> {
+    <span style="color:#66d9ef">return</span> (<span style="color:#e6db74">&#34;Color of a Banana is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">color</span>)
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">b</span> <span style="color:#a6e22e">Banana</span>) <span style="color:#a6e22e">getPrice</span>() <span style="color:#66d9ef">int</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">price</span>
+}
+</code></pre></div><p>Same goes for Apple Struct</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">//Apple Struct
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Apple</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">color</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">price</span> <span style="color:#66d9ef">int</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#a6e22e">Apple</span>) <span style="color:#a6e22e">getColor</span>() <span style="color:#66d9ef">string</span> {
+	<span style="color:#66d9ef">return</span> (<span style="color:#e6db74">&#34;Color of an Apple is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">color</span>)
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#a6e22e">Apple</span>) <span style="color:#a6e22e">getPrice</span>() <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">price</span>
+}
+</code></pre></div><p>We can test this by following code</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">f1</span> <span style="color:#a6e22e">Fruit</span> = <span style="color:#a6e22e">Apple</span>{<span style="color:#e6db74">&#34;Red&#34;</span>, <span style="color:#ae81ff">10</span>}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">f1</span>.<span style="color:#a6e22e">getColor</span>())
+
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">f2</span> <span style="color:#a6e22e">Fruit</span> = <span style="color:#a6e22e">Banana</span>{<span style="color:#e6db74">&#34;Yellow&#34;</span>, <span style="color:#ae81ff">12</span>}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">f2</span>.<span style="color:#a6e22e">getColor</span>())
+}
+</code></pre></div><p>We get the following result</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">➜  interfaces go run interface.go
+Color of an Apple is Red
+Color of a Banana is Yellow
+</code></pre></div><h2 id="reflection">Reflection</h2>
+<p>How about infering the type of the passing struct dynamically.  We can do that using the Reflection, it&rsquo;s the ability of a language to extract dynamic type information by calling TypeOf. A call to ValueOf returns a Value representing the run-time data. Zero takes a Type and returns a Value representing a zero value for that type.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">formattedPrice</span>(<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">Fruit</span>) <span style="color:#66d9ef">string</span> {
+
+	<span style="color:#a6e22e">price</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strconv</span>.<span style="color:#a6e22e">Itoa</span>(<span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">getPrice</span>())
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#66d9ef">string</span>
+	
+	<span style="color:#75715e">//Infer the type of Fruit by using reflection
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">fruitName</span> <span style="color:#f92672">:=</span> (<span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">TypeOf</span>(<span style="color:#a6e22e">f</span>)).<span style="color:#a6e22e">Name</span>(); <span style="color:#a6e22e">fruitName</span> {
+	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Apple&#34;</span>:
+		<span style="color:#a6e22e">result</span> = <span style="color:#e6db74">&#34;Price of an Apple is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">price</span>
+	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Banana&#34;</span>:
+		<span style="color:#a6e22e">result</span> = <span style="color:#e6db74">&#34;Price of a Banana is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">price</span>
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+
+</code></pre></div><p>TypeOf tells the type and Name will give us the name of the struct. In order to determine the type of objects we can use reflection.</p>
+<p>Here is the full code</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;reflect&#34;</span>
+	<span style="color:#e6db74">&#34;strconv&#34;</span>
+)
+
+<span style="color:#75715e">//Fruit Interface
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Fruit</span> <span style="color:#66d9ef">interface</span> {
+	<span style="color:#a6e22e">getColor</span>() <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">getPrice</span>() <span style="color:#66d9ef">int</span>
+}
+
+<span style="color:#75715e">//Banana Struct
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Banana</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">color</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">price</span> <span style="color:#66d9ef">int</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">b</span> <span style="color:#a6e22e">Banana</span>) <span style="color:#a6e22e">getColor</span>() <span style="color:#66d9ef">string</span> {
+	<span style="color:#66d9ef">return</span> (<span style="color:#e6db74">&#34;Color of a Banana is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">color</span>)
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">b</span> <span style="color:#a6e22e">Banana</span>) <span style="color:#a6e22e">getPrice</span>() <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">price</span>
+}
+
+<span style="color:#75715e">//Apple Struct
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Apple</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">color</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">price</span> <span style="color:#66d9ef">int</span>
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#a6e22e">Apple</span>) <span style="color:#a6e22e">getColor</span>() <span style="color:#66d9ef">string</span> {
+	<span style="color:#66d9ef">return</span> (<span style="color:#e6db74">&#34;Color of an Apple is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">color</span>)
+}
+
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#a6e22e">Apple</span>) <span style="color:#a6e22e">getPrice</span>() <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">price</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">formattedPrice</span>(<span style="color:#a6e22e">f</span> <span style="color:#a6e22e">Fruit</span>) <span style="color:#66d9ef">string</span> {
+
+	<span style="color:#a6e22e">price</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">strconv</span>.<span style="color:#a6e22e">Itoa</span>(<span style="color:#a6e22e">f</span>.<span style="color:#a6e22e">getPrice</span>())
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#66d9ef">string</span>
+	
+	<span style="color:#75715e">//Infer the type of Fruit by using reflection
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">fruitName</span> <span style="color:#f92672">:=</span> (<span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">TypeOf</span>(<span style="color:#a6e22e">f</span>)).<span style="color:#a6e22e">Name</span>(); <span style="color:#a6e22e">fruitName</span> {
+	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Apple&#34;</span>:
+		<span style="color:#a6e22e">result</span> = <span style="color:#e6db74">&#34;Price of an Apple is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">price</span>
+	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Banana&#34;</span>:
+		<span style="color:#a6e22e">result</span> = <span style="color:#e6db74">&#34;Price of a Banana is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">price</span>
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">f1</span> <span style="color:#a6e22e">Fruit</span> = <span style="color:#a6e22e">Apple</span>{<span style="color:#e6db74">&#34;Red&#34;</span>, <span style="color:#ae81ff">10</span>}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">f1</span>.<span style="color:#a6e22e">getColor</span>())
+
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">f2</span> <span style="color:#a6e22e">Fruit</span> = <span style="color:#a6e22e">Banana</span>{<span style="color:#e6db74">&#34;Yellow&#34;</span>, <span style="color:#ae81ff">12</span>}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">f2</span>.<span style="color:#a6e22e">getColor</span>())
+
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">formattedPrice</span>(<span style="color:#a6e22e">f1</span>))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">formattedPrice</span>(<span style="color:#a6e22e">f2</span>))
+}
+
+</code></pre></div>
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        
+        <li>
+            <a href="https://gary-techs.github.io/posts/higher-order/">Higher Order Functions, Closures in Go <i class="fa fa-chevron-circle-right"></i> </a>
+        </li>
+        
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6> |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://gary-techs.github.io/index.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+</body>
+
+</html>
+

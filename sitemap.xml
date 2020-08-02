@@ -8,11 +8,27 @@
   </url>
   
   <url>
-    <loc>https://gary-techs.github.io/categories/</loc>
+    <loc>https://gary-techs.github.io/</loc>
+    <lastmod>2020-02-02T16:53:14+04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://gary-techs.github.io/</loc>
+    <loc>https://gary-techs.github.io/posts/higher-order/</loc>
+    <lastmod>2020-02-02T16:53:14+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gary-techs.github.io/posts/</loc>
+    <lastmod>2020-02-02T16:53:14+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gary-techs.github.io/posts/interface-golang/</loc>
+    <lastmod>2020-01-31T16:53:14+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gary-techs.github.io/categories/</loc>
   </url>
   
   <url>

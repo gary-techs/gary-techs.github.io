@@ -1,0 +1,265 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>Gary talks tech</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="" /><meta property="og:title" content="Higher Order Functions, Closures in Go" />
+<meta property="og:description" content="Intro According to wiki a Higher-order function is something that does at least one of the following:-
+ takes one or more functions as arguments returns a function as its result  Why would we need a HOF? Well think about all the repetetive tasks we do when iterating over any data set. We could be filtering the data set by applying different filters. It could be about mapping an old list to a new list etc." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gary-techs.github.io/posts/higher-order/" />
+<meta property="article:published_time" content="2020-02-02T16:53:14+04:00" />
+<meta property="article:modified_time" content="2020-02-02T16:53:14+04:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Higher Order Functions, Closures in Go"/>
+<meta name="twitter:description" content="Intro According to wiki a Higher-order function is something that does at least one of the following:-
+ takes one or more functions as arguments returns a function as its result  Why would we need a HOF? Well think about all the repetetive tasks we do when iterating over any data set. We could be filtering the data set by applying different filters. It could be about mapping an old list to a new list etc."/>
+
+<meta name="generator" content="Hugo 0.74.3" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://gary-techs.github.io/fontawesome/css/all.min.css" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  
+  
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Gary talks tech</a>
+            </h1>
+
+      <ul id="social-media">
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About Gary</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Higher Order Functions, Closures in Go</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-02-02T16:53:14&#43;04:00">Feb 2, 2020</time>
+        </li>
+        
+
+        
+
+        <li>3 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    
+<div class="featured_image">
+    <a href="https://gary-techs.github.io/posts/higher-order/" title="Higher Order Functions, Closures in Go">
+        <img src="">
+    </a>
+</div>
+
+
+
+    <h2 id="intro">Intro</h2>
+<p>According to wiki a Higher-order function is something that does at least one of the following:-</p>
+<ul>
+<li>takes one or more functions as arguments</li>
+<li>returns a function as its result</li>
+</ul>
+<p>Why would we need a HOF? Well think about all the repetetive tasks we do when iterating over any data set. We could be filtering the data set by applying different filters. It could be about mapping an old list to a new list etc. Let&rsquo;s start by filtering an array, where we need to find all the even elements.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">even</span>(<span style="color:#a6e22e">list</span> []<span style="color:#66d9ef">int</span>) []<span style="color:#66d9ef">int</span> {
+	<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">0</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">%</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+			<span style="color:#a6e22e">result</span> = append(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">i</span>)
+		}
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+</code></pre></div><p>We could write a generic functino filter that can take different filters as functional arguements and do the same for us.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">list</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">applyFilter</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">elem</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">bool</span>) []<span style="color:#66d9ef">int</span> {
+    <span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">0</span>)
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">applyFilter</span>(<span style="color:#a6e22e">i</span>) {
+            <span style="color:#a6e22e">result</span> = append(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">i</span>)
+        }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+</code></pre></div><p>So applyFilter is the filter that want to be applied on the list. We can pass the even filter by rewriting it as a function which returns true or false. Since functions are first class citizens in Go which means they can be passed as normal arguements in Go. Let&rsquo;s take a look at evenFilter here we assign the variable evenFilter the</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">evenFilter</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">e</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">bool</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">e</span><span style="color:#f92672">%</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+		}
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>
+	}
+
+	<span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">41</span>, <span style="color:#ae81ff">58</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">72</span>, <span style="color:#ae81ff">80</span>}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">even</span>(<span style="color:#a6e22e">b</span>))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">evenFilter</span>))
+}
+</code></pre></div><p>Both print the same output</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">➜  hof go run hof.go
+<span style="color:#f92672">[</span><span style="color:#ae81ff">10</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">58</span> <span style="color:#ae81ff">72</span> 80<span style="color:#f92672">]</span>
+<span style="color:#f92672">[</span><span style="color:#ae81ff">10</span> <span style="color:#ae81ff">22</span> <span style="color:#ae81ff">58</span> <span style="color:#ae81ff">72</span> 80<span style="color:#f92672">]</span>
+</code></pre></div><p>Next we could have a filter where we need all integers greater than a certain value let&rsquo;s say 36. We could write certain filter like</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"> 
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">greaterThan36</span>(<span style="color:#a6e22e">list</span> []<span style="color:#66d9ef">int</span>) []<span style="color:#66d9ef">int</span> {
+	<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">0</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> &gt; <span style="color:#ae81ff">36</span> {
+			<span style="color:#a6e22e">result</span> = append(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">i</span>)
+		}
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+</code></pre></div><h1 id="closures">Closures</h1>
+<p>We can remove the cumbersome greaterThan36 by something cooler and generic. Let&rsquo;s write a higher order function which uses closures property and returns a dynamic function. We can have greaterThanN function which takes <strong>N</strong> as parameter and returns a function which we will be using.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">//Anonymous function returns a new generic function
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">greaterThanN</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">func</span>(<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">bool</span> {
+    <span style="color:#a6e22e">f</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">bool</span> {
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> &gt; <span style="color:#a6e22e">n</span> {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+        }
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">f</span>
+}
+</code></pre></div><p>We can now create as many greater than functions using this generic function. We can rewrite the application code again as following</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">22</span>, <span style="color:#ae81ff">31</span>, <span style="color:#ae81ff">41</span>, <span style="color:#ae81ff">58</span>, <span style="color:#ae81ff">61</span>, <span style="color:#ae81ff">72</span>, <span style="color:#ae81ff">80</span>}
+
+	<span style="color:#75715e">//Anonymous function returns a new generic function
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">greaterThanN</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">func</span>(<span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">bool</span> {
+		<span style="color:#a6e22e">f</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">bool</span> {
+			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> &gt; <span style="color:#a6e22e">n</span> {
+				<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+			}
+			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>
+		}
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">f</span>
+	}
+
+	<span style="color:#75715e">//Anonymous function which returns bool based on args value
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">evenFilter</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">e</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">bool</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">e</span><span style="color:#f92672">%</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+			<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+		}
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>
+	}
+
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">even</span>(<span style="color:#a6e22e">b</span>))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">evenFilter</span>))
+
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">greaterThan36</span>(<span style="color:#a6e22e">b</span>))
+	<span style="color:#75715e">//creating a new function from another HOF
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">greaterThan36Func</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">greaterThanN</span>(<span style="color:#ae81ff">36</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">greaterThan36Func</span>))
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">even</span>(<span style="color:#a6e22e">list</span> []<span style="color:#66d9ef">int</span>) []<span style="color:#66d9ef">int</span> {
+	<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">0</span>)
+
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">%</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+			<span style="color:#a6e22e">result</span> = append(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">i</span>)
+		}
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">greaterThan36</span>(<span style="color:#a6e22e">list</span> []<span style="color:#66d9ef">int</span>) []<span style="color:#66d9ef">int</span> {
+	<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">0</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> &gt; <span style="color:#ae81ff">36</span> {
+			<span style="color:#a6e22e">result</span> = append(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">i</span>)
+		}
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">list</span> []<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">applyFilter</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">elem</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">bool</span>) []<span style="color:#66d9ef">int</span> {
+	<span style="color:#a6e22e">result</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">0</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">applyFilter</span>(<span style="color:#a6e22e">i</span>) {
+			<span style="color:#a6e22e">result</span> = append(<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">i</span>)
+		}
+	}
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+}
+
+</code></pre></div>
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://gary-techs.github.io/posts/interface-golang/"><i class="fa fa-chevron-circle-left"></i> Interfaces and Reflection in Go </a>
+        </li>
+        
+        
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6> |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://gary-techs.github.io/index.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+</body>
+
+</html>
+
