@@ -1,0 +1,14 @@
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+ <channel>
+   <title>Gary talks tech</title>
+   <link>https://gary-techs.github.io/</link>
+   <description>Recent content on Gary talks tech</description>
+   <generator>Hugo -- gohugo.io</generator>
+   <language>en-us</language>
+   
+       <atom:link href="https://gary-techs.github.io/index.xml" rel="self" type="application/rss+xml" />
+   
+   
+ </channel>
+</rss>
