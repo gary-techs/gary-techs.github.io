@@ -1,0 +1,4 @@
+baseURL = "https://gary-techs.github.io/"
+languageCode = "en-us"
+title = "Gary talks tech"
+theme = "hugo-kiera"
