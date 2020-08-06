@@ -100,7 +100,7 @@ Let&rsquo;s start with a Account struct it has account details and a customer na
 	<span style="color:#e6db74">&#34;fmt&#34;</span>
 )
 
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">accountDetails</span> <span style="color:#66d9ef">struct</span> {
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">AccountDetails</span> <span style="color:#66d9ef">struct</span> {
 	<span style="color:#a6e22e">accountType</span>   <span style="color:#66d9ef">string</span>
 	<span style="color:#a6e22e">accountNumber</span> <span style="color:#66d9ef">string</span>
 }
@@ -108,12 +108,12 @@ Let&rsquo;s start with a Account struct it has account details and a customer na
 <span style="color:#75715e">//Account is exported
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Account</span> <span style="color:#66d9ef">struct</span> {
 	<span style="color:#a6e22e">CustomerName</span> <span style="color:#66d9ef">string</span>
-	<span style="color:#a6e22e">details</span>      <span style="color:#f92672">*</span><span style="color:#a6e22e">accountDetails</span>
+	<span style="color:#a6e22e">details</span>      <span style="color:#f92672">*</span><span style="color:#a6e22e">AccountDetails</span>
 }
 
 <span style="color:#75715e">//Setter on Account struct
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Account</span>) <span style="color:#a6e22e">setDetails</span>(<span style="color:#a6e22e">accType</span>, <span style="color:#a6e22e">accNumber</span> <span style="color:#66d9ef">string</span>) {
-	<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">details</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">accountDetails</span>{<span style="color:#a6e22e">accType</span>, <span style="color:#a6e22e">accNumber</span>}
+	<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">details</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">AccountDetails</span>{<span style="color:#a6e22e">accType</span>, <span style="color:#a6e22e">accNumber</span>}
 }
 
 </code></pre></div><p>As shown in the following code, the Account class has getAccountType, which returns the accountType private class attribute:</p>
@@ -143,7 +143,7 @@ The main method calls the Account initializer with CustomerName. The details of
 <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;CustomerName&#34;</span>:<span style="color:#e6db74">&#34;Girish Sharma&#34;</span><span style="color:#f92672">}</span>
 Savings Account
 AED12121110001
-</code></pre></div><p>So as we can see the private struct accountDetails is not printed via the marshalling of the struct. In nut shell use getter methods to provide access to private members of the structs.</p>
+</code></pre></div><p>So as we can see the private struct AccountDetails is not printed via the marshalling of the struct. In nut shell use getter methods to provide access to private members of the structs.</p>
 
 
 </article>

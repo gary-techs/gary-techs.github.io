@@ -26,7 +26,7 @@
 	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
 )
 
-&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;accountDetails&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;AccountDetails&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
 	&lt;span style=&#34;color:#a6e22e&#34;&gt;accountType&lt;/span&gt;   &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;
 	&lt;span style=&#34;color:#a6e22e&#34;&gt;accountNumber&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;
 }
@@ -34,12 +34,12 @@
 &lt;span style=&#34;color:#75715e&#34;&gt;//Account is exported
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Account&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
 	&lt;span style=&#34;color:#a6e22e&#34;&gt;CustomerName&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;
-	&lt;span style=&#34;color:#a6e22e&#34;&gt;details&lt;/span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;accountDetails&lt;/span&gt;
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;details&lt;/span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;AccountDetails&lt;/span&gt;
 }
 
 &lt;span style=&#34;color:#75715e&#34;&gt;//Setter on Account struct
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Account&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;setDetails&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;accType&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;accNumber&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;) {
-	&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;details&lt;/span&gt; = &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;accountDetails&lt;/span&gt;{&lt;span style=&#34;color:#a6e22e&#34;&gt;accType&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;accNumber&lt;/span&gt;}
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;details&lt;/span&gt; = &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;AccountDetails&lt;/span&gt;{&lt;span style=&#34;color:#a6e22e&#34;&gt;accType&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;accNumber&lt;/span&gt;}
 }
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As shown in the following code, the Account class has getAccountType, which returns the accountType private class attribute:&lt;/p&gt;
@@ -69,7 +69,7 @@ The main method calls the Account initializer with CustomerName. The details of
 &lt;span style=&#34;color:#f92672&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CustomerName&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Girish Sharma&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;}&lt;/span&gt;
 Savings Account
 AED12121110001
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So as we can see the private struct accountDetails is not printed via the marshalling of the struct. In nut shell use getter methods to provide access to private members of the structs.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So as we can see the private struct AccountDetails is not printed via the marshalling of the struct. In nut shell use getter methods to provide access to private members of the structs.&lt;/p&gt;
 </description>
      </item>
    
