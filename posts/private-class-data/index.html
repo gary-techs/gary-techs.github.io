@@ -1,0 +1,183 @@
+<!doctype html>
+
+<html lang="en-us">
+
+<head>
+  <title>Gary talks tech</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="" /><meta property="og:title" content="Private Class Data pattern" />
+<meta property="og:description" content="At times we need to make the data inside a struct Private. The private class data pattern secures the data within a class. This pattern encapsulates the initialization of the class data. The write privileges of properties within the private class are protected, and properties are set during construction.
+Let&rsquo;s start with a Account struct it has account details and a customer name. AccountDetails is the private attribute of Account , and CustomerName is the public attribute." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gary-techs.github.io/posts/private-class-data/" />
+<meta property="article:published_time" content="2020-04-12T16:53:14+04:00" />
+<meta property="article:modified_time" content="2020-04-12T16:53:14+04:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Private Class Data pattern"/>
+<meta name="twitter:description" content="At times we need to make the data inside a struct Private. The private class data pattern secures the data within a class. This pattern encapsulates the initialization of the class data. The write privileges of properties within the private class are protected, and properties are set during construction.
+Let&rsquo;s start with a Account struct it has account details and a customer name. AccountDetails is the private attribute of Account , and CustomerName is the public attribute."/>
+
+<meta name="generator" content="Hugo 0.74.3" />
+    
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://gary-techs.github.io/fontawesome/css/all.min.css" />
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  
+  
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Gary talks tech</a>
+            </h1>
+
+      <ul id="social-media">
+      </ul>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>About Gary</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+
+
+<article>
+
+    <h1>Private Class Data pattern</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-04-12T16:53:14&#43;04:00">Apr 12, 2020</time>
+        </li>
+        
+
+        
+
+        <li>2 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    
+<div class="featured_image">
+    <a href="https://gary-techs.github.io/posts/private-class-data/" title="Private Class Data pattern">
+        <img src="">
+    </a>
+</div>
+
+
+
+    <p>At times we need to make the data inside a struct Private. The private class data pattern secures the data within a class. This pattern encapsulates the initialization of the class data. The write privileges of properties within the private class are protected, and properties are set during construction.</p>
+<p>Let&rsquo;s start with a Account struct it has account details and a customer name. AccountDetails is the private attribute of Account , and CustomerName is the public attribute. JSON marshaling of Account has CustomerName as a public property. AccountDetails is the package property in Go (modeled as private class data).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;encoding/json&#34;</span>
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+)
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">accountDetails</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">accountType</span>   <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">accountNumber</span> <span style="color:#66d9ef">string</span>
+}
+
+<span style="color:#75715e">//Account is exported
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Account</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">CustomerName</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">details</span>      <span style="color:#f92672">*</span><span style="color:#a6e22e">accountDetails</span>
+}
+
+<span style="color:#75715e">//Setter on Account struct
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Account</span>) <span style="color:#a6e22e">setDetails</span>(<span style="color:#a6e22e">accType</span>, <span style="color:#a6e22e">accNumber</span> <span style="color:#66d9ef">string</span>) {
+	<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">details</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">accountDetails</span>{<span style="color:#a6e22e">accType</span>, <span style="color:#a6e22e">accNumber</span>}
+}
+
+</code></pre></div><p>As shown in the following code, the Account class has getAccountType, which returns the accountType private class attribute:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">
+<span style="color:#75715e">//Account class method getAccountType
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Account</span>) <span style="color:#a6e22e">getAccountType</span>() <span style="color:#66d9ef">string</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">details</span>.<span style="color:#a6e22e">accountType</span>
+}
+
+<span style="color:#75715e">//Account class method getAccountNumber
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Account</span>) <span style="color:#a6e22e">getAccountNumber</span>() <span style="color:#66d9ef">string</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">details</span>.<span style="color:#a6e22e">accountNumber</span>
+}
+</code></pre></div><p>So the <strong>casing</strong> sets the attribute to be private or public. In Golang uppercase symbolises that a given attribute has to be exported.
+The main method calls the Account initializer with CustomerName. The details of the account are set details with the setDetails method:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#75715e">// main method
+</span><span style="color:#75715e"></span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Account</span>{<span style="color:#a6e22e">CustomerName</span>: <span style="color:#e6db74">&#34;Girish Sharma&#34;</span>}
+    <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">setDetails</span>(<span style="color:#e6db74">&#34;Savings Account&#34;</span>, <span style="color:#e6db74">&#34;AED12121110001&#34;</span>)
+    <span style="color:#a6e22e">jsonDump</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Marshal</span>(<span style="color:#a6e22e">a</span>)
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(string(<span style="color:#a6e22e">jsonDump</span>))
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">getAccountType</span>())
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">getAccountNumber</span>())
+}
+</code></pre></div><p>Running the above code gives us the following output</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">➜  private_class_data go run main.go
+<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;CustomerName&#34;</span>:<span style="color:#e6db74">&#34;Girish Sharma&#34;</span><span style="color:#f92672">}</span>
+Savings Account
+AED12121110001
+</code></pre></div><p>So as we can see the private struct accountDetails is not printed via the marshalling of the struct. In nut shell use getter methods to provide access to private members of the structs.</p>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="https://gary-techs.github.io/posts/error-stack/"><i class="fa fa-chevron-circle-left"></i> Tracking errors in Golang</a>
+        </li>
+        
+        
+    </ul>
+</section>
+  
+    
+    
+  
+
+
+
+
+
+</main>
+    <footer>
+        <h6> |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a> |
+            <a href="https://gary-techs.github.io/index.xml">Subscribe </a></h6>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+</body>
+
+</html>
+

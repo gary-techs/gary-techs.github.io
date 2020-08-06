@@ -11,7 +11,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://gary-techs.github.io/" />
-<meta property="og:updated_time" content="2020-02-02T16:53:14+04:00" />
+<meta property="og:updated_time" content="2020-04-12T16:53:14+04:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Gary talks tech"/>
@@ -66,6 +66,70 @@
     
 
     <li class="first" >
+      <h1><a href="https://gary-techs.github.io/posts/private-class-data/" title="Private Class Data pattern">Private Class Data pattern</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-04-12T16:53:14&#43;04:00">Apr 12, 2020</time>
+        </li>
+        
+
+        
+
+        <li>2 minutes read</li>
+    </ul>
+</aside>
+
+      
+<div class="featured_image">
+    <a href="https://gary-techs.github.io/posts/private-class-data/" title="Private Class Data pattern">
+        <img src="">
+    </a>
+</div>
+
+
+      <p>At times we need to make the data inside a struct Private. The private class data pattern secures the data within a class. This pattern encapsulates the initialization of the class data. The write privileges of properties within the private class are protected, and properties are set during construction.
+Let&rsquo;s start with a Account struct it has account details and a customer name. AccountDetails is the private attribute of Account , and CustomerName is the public attribute.</p>
+      
+      <a href="/posts/private-class-data/">Read more…</a>
+      
+    </li>
+    
+
+    <li >
+      <h1><a href="https://gary-techs.github.io/posts/error-stack/" title="Tracking errors in Golang">Tracking errors in Golang</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-03-31T16:53:14&#43;04:00">Mar 31, 2020</time>
+        </li>
+        
+
+        
+
+        <li>2 minutes read</li>
+    </ul>
+</aside>
+
+      
+<div class="featured_image">
+    <a href="https://gary-techs.github.io/posts/error-stack/" title="Tracking errors in Golang">
+        <img src="">
+    </a>
+</div>
+
+
+      <p>Problem In Golang it&rsquo;s difficult to pinpoint the source of an error. Langauges like Java have a stack trace to tell you where the error is coming from. This feature is not there in Golang by default.
+In this article, we will discuss how to use the fmt, and the github.com/pkg/errors libraries to give us better error reporting.
+Consider this example:
+package main import ( &#34;errors&#34; &#34;fmt&#34; ) func main() { result, err := funcA() if err !</p>
+      
+      <a href="/posts/error-stack/">Read more…</a>
+      
+    </li>
+    
+
+    <li >
       <h1><a href="https://gary-techs.github.io/posts/higher-order/" title="Higher Order Functions, Closures in Go">Higher Order Functions, Closures in Go</a></h1>
       <aside>
     <ul>
