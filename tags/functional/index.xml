@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Functional on Gary talks tech</title>
+    <link>https://gary-techs.github.io/tags/functional/</link>
+    <description>Recent content in Functional on Gary talks tech</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 02 Feb 2020 16:53:14 +0400</lastBuildDate>
+    
+	<atom:link href="https://gary-techs.github.io/tags/functional/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Higher Order Functions, Closures in Go</title>
+      <link>https://gary-techs.github.io/posts/higher-order/</link>
+      <pubDate>Sun, 02 Feb 2020 16:53:14 +0400</pubDate>
+      
+      <guid>https://gary-techs.github.io/posts/higher-order/</guid>
+      <description>Intro According to wiki a Higher-order function is something that does at least one of the following:-
+ takes one or more functions as arguments returns a function as its result  Why would we need a HOF? Well think about all the repetetive tasks we do when iterating over any data set. We could be filtering the data set by applying different filters. It could be about mapping an old list to a new list etc.</description>
+    </item>
+    
+  </channel>
+</rss>
