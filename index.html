@@ -27,7 +27,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://gary-techs.github.io/" />
 <meta property="og:image" content="https://gary-techs.github.io/images/gary.png"/>
-<meta property="og:updated_time" content="2020-04-12T16:53:14+04:00" />
+<meta property="og:updated_time" content="2020-05-31T16:53:14+04:00" />
 
 
 
@@ -89,11 +89,9 @@
           <a href="https://gary-techs.github.io/">Home</a>
         </li>
         <li>
-          <a href="/about/">About Gary</a>
+          <a href="/about/">About</a>
         </li><li>
           <a href="/posts/">Posts</a>
-        </li><li>
-          <a href="/about/">About</a>
         </li>
       </ul>
     </nav>
@@ -113,6 +111,25 @@
   <div class="posts">
       <article class="post">
         <h1 class="post-title">
+          <a href="https://gary-techs.github.io/posts/benchmarking/">Benchmarking in Golang</a>
+        </h1>
+
+        <div class="post-date">
+          <time datetime="2020-05-31T16:53:14&#43;0400">May 31, 2020</time> &middot; 2 min read
+        </div>
+
+        <div>
+          Benchmarking Go has capability for benchmarking like Java and other languages. It is the process of evaluating the performance of code.
+In Go, benchmark tests are constructed similarly to conventional tests. Benchmark tests follow some strict guidelines and look like so:
+import &#34;testing&#34; func Fib(n int) int { if n &lt; 2 { return n } return Fib(n-1) + Fib(n-2) } func BenchmarkFib(b *testing.B) { for n := 0; n &lt; b.
+        </div>
+
+        <div class="read-more-link">
+          <a href="https://gary-techs.github.io/posts/benchmarking/">Read More</a>
+        </div>
+      </article>
+      <article class="post">
+        <h1 class="post-title">
           <a href="https://gary-techs.github.io/posts/private-class-data/">Private Class Data pattern</a>
         </h1>
 
@@ -127,25 +144,6 @@ Let&rsquo;s start with a Account struct it has account details and a customer na
 
         <div class="read-more-link">
           <a href="https://gary-techs.github.io/posts/private-class-data/">Read More</a>
-        </div>
-      </article>
-      <article class="post">
-        <h1 class="post-title">
-          <a href="https://gary-techs.github.io/posts/benchmarking/">Benchmarking in Golang</a>
-        </h1>
-
-        <div class="post-date">
-          <time datetime="2020-03-31T16:53:14&#43;0400">Mar 31, 2020</time> &middot; 2 min read
-        </div>
-
-        <div>
-          Benchmarking Go has capability for benchmarking like Java and other languages. It is the process of evaluating the performance of code.
-In Go, benchmark tests are constructed similarly to conventional tests. Benchmark tests follow some strict guidelines and look like so:
-import &#34;testing&#34; func Fib(n int) int { if n &lt; 2 { return n } return Fib(n-1) + Fib(n-2) } func BenchmarkFib(b *testing.B) { for n := 0; n &lt; b.
-        </div>
-
-        <div class="read-more-link">
-          <a href="https://gary-techs.github.io/posts/benchmarking/">Read More</a>
         </div>
       </article>
       <article class="post">

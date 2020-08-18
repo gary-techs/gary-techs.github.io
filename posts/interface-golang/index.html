@@ -16,7 +16,7 @@
 //Fruit Interface type Fruit interface { getColor() string getPrice() int } In order for Banana struct to be a fruit it has to implement two methods getColor and getPrice.">
 <meta itemprop="datePublished" content="2020-01-31T16:53:14+04:00" />
 <meta itemprop="dateModified" content="2020-01-31T16:53:14+04:00" />
-<meta itemprop="wordCount" content="527">
+<meta itemprop="wordCount" content="510">
 <meta itemprop="image" content="https://gary-techs.github.io/images/gary.png"/>
 
 
@@ -100,11 +100,9 @@
           <a href="https://gary-techs.github.io/">Home</a>
         </li>
         <li>
-          <a href="/about/">About Gary</a>
+          <a href="/about/">About</a>
         </li><li>
           <a href="/posts/">Posts</a>
-        </li><li>
-          <a href="/about/">About</a>
         </li>
       </ul>
     </nav>
@@ -163,13 +161,6 @@
 <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#a6e22e">Apple</span>) <span style="color:#a6e22e">getPrice</span>() <span style="color:#66d9ef">int</span> {
 	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">price</span>
 }
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// Your First Program
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloWorld</span> <span style="color:#f92672">{</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
-        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Hello, World!&#34;</span><span style="color:#f92672">);</span> 
-    <span style="color:#f92672">}</span>
-<span style="color:#f92672">}</span>
 </code></pre></div><p>We can test this by following code</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">f1</span> <span style="color:#a6e22e">Fruit</span> = <span style="color:#a6e22e">Apple</span>{<span style="color:#e6db74">&#34;Red&#34;</span>, <span style="color:#ae81ff">10</span>}
@@ -191,11 +182,11 @@ Color of a Banana is Yellow
 	
 	<span style="color:#75715e">//Infer the type of Fruit by using reflection
 </span><span style="color:#75715e"></span>	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">fruitName</span> <span style="color:#f92672">:=</span> (<span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">TypeOf</span>(<span style="color:#a6e22e">f</span>)).<span style="color:#a6e22e">Name</span>(); <span style="color:#a6e22e">fruitName</span> {
-	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Apple&#34;</span>:
-		<span style="color:#a6e22e">result</span> = <span style="color:#e6db74">&#34;Price of an Apple is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">price</span>
-	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Banana&#34;</span>:
-		<span style="color:#a6e22e">result</span> = <span style="color:#e6db74">&#34;Price of a Banana is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">price</span>
-	}
+		<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Apple&#34;</span>:
+			<span style="color:#a6e22e">result</span> = <span style="color:#e6db74">&#34;Price of an Apple is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">price</span>
+		<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Banana&#34;</span>:
+			<span style="color:#a6e22e">result</span> = <span style="color:#e6db74">&#34;Price of a Banana is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">price</span>
+		}
 	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
 }
 
@@ -250,11 +241,11 @@ Color of a Banana is Yellow
 	
 	<span style="color:#75715e">//Infer the type of Fruit by using reflection
 </span><span style="color:#75715e"></span>	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">fruitName</span> <span style="color:#f92672">:=</span> (<span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">TypeOf</span>(<span style="color:#a6e22e">f</span>)).<span style="color:#a6e22e">Name</span>(); <span style="color:#a6e22e">fruitName</span> {
-	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Apple&#34;</span>:
-		<span style="color:#a6e22e">result</span> = <span style="color:#e6db74">&#34;Price of an Apple is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">price</span>
-	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Banana&#34;</span>:
-		<span style="color:#a6e22e">result</span> = <span style="color:#e6db74">&#34;Price of a Banana is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">price</span>
-	}
+		<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Apple&#34;</span>:
+			<span style="color:#a6e22e">result</span> = <span style="color:#e6db74">&#34;Price of an Apple is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">price</span>
+		<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Banana&#34;</span>:
+			<span style="color:#a6e22e">result</span> = <span style="color:#e6db74">&#34;Price of a Banana is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">price</span>
+		}
 	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
 }
 

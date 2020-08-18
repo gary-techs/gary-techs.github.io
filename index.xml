@@ -6,18 +6,29 @@
     <description>Recent content on Gary talks tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Apr 2020 16:53:14 +0400</lastBuildDate>
+    <lastBuildDate>Sun, 31 May 2020 16:53:14 +0400</lastBuildDate>
     
 	<atom:link href="https://gary-techs.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>About Gary</title>
+      <title>About</title>
       <link>https://gary-techs.github.io/about/</link>
       <pubDate>Thu, 09 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://gary-techs.github.io/about/</guid>
       <description>Girish Sharma (Gary) is an experienced SW Developer working for over 15 years in IT. I can help you with projects in Golang, React, Node JS. Learn more and contribute on GitHub.</description>
+    </item>
+    
+    <item>
+      <title>Benchmarking in Golang</title>
+      <link>https://gary-techs.github.io/posts/benchmarking/</link>
+      <pubDate>Sun, 31 May 2020 16:53:14 +0400</pubDate>
+      
+      <guid>https://gary-techs.github.io/posts/benchmarking/</guid>
+      <description>Benchmarking Go has capability for benchmarking like Java and other languages. It is the process of evaluating the performance of code.
+In Go, benchmark tests are constructed similarly to conventional tests. Benchmark tests follow some strict guidelines and look like so:
+import &amp;#34;testing&amp;#34; func Fib(n int) int { if n &amp;lt; 2 { return n } return Fib(n-1) + Fib(n-2) } func BenchmarkFib(b *testing.B) { for n := 0; n &amp;lt; b.</description>
     </item>
     
     <item>
@@ -28,17 +39,6 @@
       <guid>https://gary-techs.github.io/posts/private-class-data/</guid>
       <description>At times we need to make the data inside a struct Private. The private class data pattern secures the data within a class. This pattern encapsulates the initialization of the class data. The write privileges of properties within the private class are protected, and properties are set during construction.
 Let&amp;rsquo;s start with a Account struct it has account details and a customer name. AccountDetails is the private attribute of Account , and CustomerName is the public attribute.</description>
-    </item>
-    
-    <item>
-      <title>Benchmarking in Golang</title>
-      <link>https://gary-techs.github.io/posts/benchmarking/</link>
-      <pubDate>Tue, 31 Mar 2020 16:53:14 +0400</pubDate>
-      
-      <guid>https://gary-techs.github.io/posts/benchmarking/</guid>
-      <description>Benchmarking Go has capability for benchmarking like Java and other languages. It is the process of evaluating the performance of code.
-In Go, benchmark tests are constructed similarly to conventional tests. Benchmark tests follow some strict guidelines and look like so:
-import &amp;#34;testing&amp;#34; func Fib(n int) int { if n &amp;lt; 2 { return n } return Fib(n-1) + Fib(n-2) } func BenchmarkFib(b *testing.B) { for n := 0; n &amp;lt; b.</description>
     </item>
     
     <item>
