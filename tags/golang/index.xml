@@ -6,10 +6,20 @@
     <description>Recent content in Golang on Gary talks tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 May 2020 16:53:14 +0400</lastBuildDate>
+    <lastBuildDate>Mon, 31 Aug 2020 16:53:14 +0400</lastBuildDate>
     
 	<atom:link href="https://gary-techs.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Wait for all the Go routines to finish</title>
+      <link>https://gary-techs.github.io/posts/goroutines/</link>
+      <pubDate>Mon, 31 Aug 2020 16:53:14 +0400</pubDate>
+      
+      <guid>https://gary-techs.github.io/posts/goroutines/</guid>
+      <description>Wait for all the Go routines to finish Go has a dedicated package sync that simplifies synchronization of goroutines. However in simple cases, goroutines can be synchronized with ordinary channels. In this post we will look at both methods on example.
+Waiting for a single goroutine can be implemented with a help of a channel. When finished execution, worker goroutine sends a message to main goroutine awaiting for it. Like in the following example.</description>
+    </item>
     
     <item>
       <title>Benchmarking in Golang</title>

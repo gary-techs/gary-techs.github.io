@@ -6,17 +6,53 @@
     <description>Recent content in Tags on Gary talks tech</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 31 May 2020 16:53:14 +0400</lastBuildDate>
+    <lastBuildDate>Sun, 08 Nov 2020 12:19:14 +0400</lastBuildDate>
     
 	<atom:link href="https://gary-techs.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>GraphQL</title>
+      <link>https://gary-techs.github.io/tags/graphql/</link>
+      <pubDate>Sun, 08 Nov 2020 12:19:14 +0400</pubDate>
+      
+      <guid>https://gary-techs.github.io/tags/graphql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Javascript</title>
+      <link>https://gary-techs.github.io/tags/javascript/</link>
+      <pubDate>Wed, 21 Oct 2020 12:43:14 +0400</pubDate>
+      
+      <guid>https://gary-techs.github.io/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Golang</title>
       <link>https://gary-techs.github.io/tags/golang/</link>
-      <pubDate>Sun, 31 May 2020 16:53:14 +0400</pubDate>
+      <pubDate>Mon, 31 Aug 2020 16:53:14 +0400</pubDate>
       
       <guid>https://gary-techs.github.io/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Atomic Design</title>
+      <link>https://gary-techs.github.io/tags/atomic-design/</link>
+      <pubDate>Sat, 01 Aug 2020 12:43:14 +0400</pubDate>
+      
+      <guid>https://gary-techs.github.io/tags/atomic-design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HTML</title>
+      <link>https://gary-techs.github.io/tags/html/</link>
+      <pubDate>Sat, 01 Aug 2020 12:43:14 +0400</pubDate>
+      
+      <guid>https://gary-techs.github.io/tags/html/</guid>
       <description></description>
     </item>
     

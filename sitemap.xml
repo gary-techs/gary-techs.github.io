@@ -8,27 +8,67 @@
   </url>
   
   <url>
-    <loc>https://gary-techs.github.io/posts/benchmarking/</loc>
-    <lastmod>2020-05-31T16:53:14+04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://gary-techs.github.io/</loc>
-    <lastmod>2020-05-31T16:53:14+04:00</lastmod>
+    <lastmod>2020-11-08T12:19:14+04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://gary-techs.github.io/tags/golang/</loc>
-    <lastmod>2020-05-31T16:53:14+04:00</lastmod>
+    <loc>https://gary-techs.github.io/tags/graphql/</loc>
+    <lastmod>2020-11-08T12:19:14+04:00</lastmod>
   </url>
   
   <url>
     <loc>https://gary-techs.github.io/posts/</loc>
-    <lastmod>2020-05-31T16:53:14+04:00</lastmod>
+    <lastmod>2020-11-08T12:19:14+04:00</lastmod>
   </url>
   
   <url>
     <loc>https://gary-techs.github.io/tags/</loc>
+    <lastmod>2020-11-08T12:19:14+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gary-techs.github.io/posts/graphql/</loc>
+    <lastmod>2020-11-08T12:19:14+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gary-techs.github.io/tags/javascript/</loc>
+    <lastmod>2020-10-21T12:43:14+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gary-techs.github.io/posts/reducers-javascript/</loc>
+    <lastmod>2020-10-21T12:43:14+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gary-techs.github.io/tags/golang/</loc>
+    <lastmod>2020-08-31T16:53:14+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gary-techs.github.io/posts/goroutines/</loc>
+    <lastmod>2020-08-31T16:53:14+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gary-techs.github.io/tags/atomic-design/</loc>
+    <lastmod>2020-08-01T12:43:14+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gary-techs.github.io/posts/atomic-design/</loc>
+    <lastmod>2020-08-01T12:43:14+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gary-techs.github.io/tags/html/</loc>
+    <lastmod>2020-08-01T12:43:14+04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://gary-techs.github.io/posts/benchmarking/</loc>
     <lastmod>2020-05-31T16:53:14+04:00</lastmod>
   </url>
   

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on Gary talks tech</title>
+    <link>https://gary-techs.github.io/tags/javascript/</link>
+    <description>Recent content in Javascript on Gary talks tech</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 21 Oct 2020 12:43:14 +0400</lastBuildDate>
+    
+	<atom:link href="https://gary-techs.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reducers in JS</title>
+      <link>https://gary-techs.github.io/posts/reducers-javascript/</link>
+      <pubDate>Wed, 21 Oct 2020 12:43:14 +0400</pubDate>
+      
+      <guid>https://gary-techs.github.io/posts/reducers-javascript/</guid>
+      <description>For most JavaScript applications, the reducer is an essential concept that helps us manage application state.
+It is used in virtually every JavaScript library or framework, React, Angular and Vue, particularly in the state management libraries Redux and ngrx. It’s important to understand in order to grasp managing state in medium to large scale applications.
+WHAT IS A REDUCER? A reducer is a very simple idea and it’s something that will be easy for you to grasp because, in a nutshell, it’s just a simple JS function.</description>
+    </item>
+    
+  </channel>
+</rss>

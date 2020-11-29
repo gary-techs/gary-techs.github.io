@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GraphQL on Gary talks tech</title>
+    <link>https://gary-techs.github.io/tags/graphql/</link>
+    <description>Recent content in GraphQL on Gary talks tech</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Nov 2020 12:19:14 +0400</lastBuildDate>
+    
+	<atom:link href="https://gary-techs.github.io/tags/graphql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Why Should you use GraphQL</title>
+      <link>https://gary-techs.github.io/posts/graphql/</link>
+      <pubDate>Sun, 08 Nov 2020 12:19:14 +0400</pubDate>
+      
+      <guid>https://gary-techs.github.io/posts/graphql/</guid>
+      <description>What is GraphQL? If you are a frontend web developer you have probably heard of GraphQL or maybe you have even used it, but what is it? GraphQL is a query language for APIs that allows you to write queries that define the data you receive. No more emailing the backend team to update an endpoint for your application. The client developer defines the data returned in the request.
+What is a GraphQL Server/API?</description>
+    </item>
+    
+  </channel>
+</rss>

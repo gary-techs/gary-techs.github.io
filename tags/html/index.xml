@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HTML on Gary talks tech</title>
+    <link>https://gary-techs.github.io/tags/html/</link>
+    <description>Recent content in HTML on Gary talks tech</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Aug 2020 12:43:14 +0400</lastBuildDate>
+    
+	<atom:link href="https://gary-techs.github.io/tags/html/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Atomic Design fundamentals</title>
+      <link>https://gary-techs.github.io/posts/atomic-design/</link>
+      <pubDate>Sat, 01 Aug 2020 12:43:14 +0400</pubDate>
+      
+      <guid>https://gary-techs.github.io/posts/atomic-design/</guid>
+      <description>For several years now, a component approach has been adopted by most JavaScript frameworks and libraries, whether it&amp;rsquo;s React, Vue or Angular. Traditional static web pages are becoming increasingly rare and are now real dynamic applications.
+To make a dynamic application, we need to:
+ Structure graphical components Create (or not) a graphical identity Creating a graphical identity using adapted components for specific use is difficult using an existing library like Bootstrap.</description>
+    </item>
+    
+  </channel>
+</rss>

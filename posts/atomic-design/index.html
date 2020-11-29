@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <title>Atomic Design fundamentals &middot; Gary talks tech</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="Atomic Design fundamentals">
+<meta itemprop="description" content="For several years now, a component approach has been adopted by most JavaScript frameworks and libraries, whether it&rsquo;s React, Vue or Angular. Traditional static web pages are becoming increasingly rare and are now real dynamic applications.
+To make a dynamic application, we need to:
+ Structure graphical components Create (or not) a graphical identity Creating a graphical identity using adapted components for specific use is difficult using an existing library like Bootstrap.">
+<meta itemprop="datePublished" content="2020-08-01T12:43:14+04:00" />
+<meta itemprop="dateModified" content="2020-08-01T12:43:14+04:00" />
+<meta itemprop="wordCount" content="793">
+<meta itemprop="image" content="https://gary-techs.github.io/images/gary.png"/>
+
+
+
+<meta itemprop="keywords" content="Atomic Design,HTML," />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://gary-techs.github.io/images/gary.png"/>
+
+<meta name="twitter:title" content="Atomic Design fundamentals"/>
+<meta name="twitter:description" content="For several years now, a component approach has been adopted by most JavaScript frameworks and libraries, whether it&rsquo;s React, Vue or Angular. Traditional static web pages are becoming increasingly rare and are now real dynamic applications.
+To make a dynamic application, we need to:
+ Structure graphical components Create (or not) a graphical identity Creating a graphical identity using adapted components for specific use is difficult using an existing library like Bootstrap."/>
+
+
+<meta property="og:title" content="Atomic Design fundamentals" />
+<meta property="og:description" content="For several years now, a component approach has been adopted by most JavaScript frameworks and libraries, whether it&rsquo;s React, Vue or Angular. Traditional static web pages are becoming increasingly rare and are now real dynamic applications.
+To make a dynamic application, we need to:
+ Structure graphical components Create (or not) a graphical identity Creating a graphical identity using adapted components for specific use is difficult using an existing library like Bootstrap." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gary-techs.github.io/posts/atomic-design/" />
+<meta property="og:image" content="https://gary-techs.github.io/images/gary.png"/>
+<meta property="article:published_time" content="2020-08-01T12:43:14+04:00" />
+<meta property="article:modified_time" content="2020-08-01T12:43:14+04:00" />
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+        <div class="author-image">
+          <img src="/images/gary.png" class="img-circle img-headshot center" alt="Profile Picture">
+        </div>
+        
+      
+
+      <h1>Gary talks tech</h1>
+
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://gary-techs.github.io/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://www.linkedin.com/in/girishsharma2/" rel="me" title="Linkedin" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1>Atomic Design fundamentals</h1>
+
+  <div class="post-date">
+    <time datetime="2020-08-01T12:43:14&#43;0400">Aug 1, 2020</time> &middot; 4 min read
+  </div>
+
+  <p><img src="/images/a_design.png" alt="image alt text">
+For several years now, a component approach has been adopted by most JavaScript frameworks and libraries, whether it&rsquo;s React, Vue or Angular. Traditional static web pages are becoming increasingly rare and are now real dynamic applications.</p>
+<p>To make a dynamic application, we need to:</p>
+<ul>
+<li>Structure graphical components</li>
+<li>Create (or not) a graphical identity</li>
+<li>Creating a graphical identity using adapted components for specific use is difficult using an existing library like Bootstrap.</li>
+</ul>
+<p>Rather than trying to use these libraries or frameworks, I&rsquo;ll try, with this blog post, to introduce you to Atomic Design principles with a simple example.</p>
+<h2 id="origins-of-atomic-designs">Origins of Atomic Designs</h2>
+<p>Atomic Design came from a blog post by Brad Frost published in 2013 followed by a book published in 2015.</p>
+<p>Inspired by chemistry principles, Brad Frost explains that atoms combine to make molecules that join together to become more complex organisms.</p>
+<p>After that, he describes the following:</p>
+<p>Atoms
+Molecules
+Organisms
+Templates
+Pages
+In order to understand these file levels, let&rsquo;s start with an example of a header composed by a logo, a list of links, and a search form. Now, let&rsquo;s look together how to break them into atoms, molecules and organisms.</p>
+<p>If you want to have the full example, I encourage you to go to my Codepen: <a href="https://codepen.io/gary-techs/pen/bGwNvdb">https://codepen.io/gary-techs/pen/bGwNvdb</a></p>
+<p>Note: In the Codepen, I use the Pug syntax. The syntax uses CSS selectors (classes start with ., id with # …) to generate HTML. In addition, the language is based on indentations, which prevent you from forgetting a closing tag, here is an example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">my-division</span>
+    <span style="color:#f92672">span</span>.<span style="color:#a6e22e">my-span</span> <span style="color:#f92672">Text</span>
+</code></pre></div><p>Will become:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-htm" data-lang="htm">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-division&#34;</span>&gt;
+    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-span&#34;</span>&gt;Text&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><h2 id="atoms">Atoms</h2>
+<p>They are the most basic part of our design, in our case, we can consider the following elements:</p>
+<ul>
+<li>Label</li>
+<li>Field</li>
+<li>Search button</li>
+<li>Menu entry</li>
+<li>Logo</li>
+</ul>
+<p><img src="/images/atomic-atoms-en.png" alt="image alt text"></p>
+<h2 id="label-by-example">Label by example</h2>
+<p>For the label, see below:</p>
+<p>HTML structure to describe tags to write for use</p>
+<ul>
+<li>CSS style that gives its graphical value</li>
+<li>HTML (Pug)</li>
+</ul>
+<h2 id="html-pug">HTML (Pug)</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">.atom-label Search the site
+</code></pre></div><h2 id="css-scss">CSS (SCSS)</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.atom-label</span> {
+  <span style="color:#66d9ef">@extend</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">atom-font</span>;
+  <span style="color:#f92672">color</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#f92672">atomColorLabelText</span>;
+}
+</code></pre></div><h2 id="molecules">Molecules</h2>
+<p>Like chemistry: molecules are made of atoms.</p>
+<p>In the example, we have:</p>
+<ul>
+<li>Search form</li>
+<li>Main navigation</li>
+</ul>
+<p><img src="/images/atomic-molecules.png" alt="image alt text"></p>
+<h2 id="form-by-example">Form by example</h2>
+<p>The search form molecule positions a label atom above a field atom followed by a search button atom.</p>
+<h2 id="html-pug-1">HTML (Pug)</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">.molecule-form-search
+    .molecule-form-search-label
+        +atom-label
+    .molecule-form-search-fields
+        .molecule-form-search-input
+            +atom-input
+        .molecule-form-search-search
+            +atom-search
+</code></pre></div><h2 id="css-scss-1">CSS (SCSS)</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#f92672">molecule-form-search</span> {
+  <span style="color:#a6e22e">.molecule-form-search-fields</span>{
+    <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">flex</span>;
+    <span style="color:#f92672">flex-wrap</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">nowrap</span>;
+    <span style="color:#a6e22e">.molecule-form-search-input</span>{
+      <span style="color:#f92672">margin-right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">8px</span>;
+      <span style="color:#f92672">flex-grow</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1</span>;
+      <span style="color:#f92672">input</span><span style="color:#a6e22e">.atom-input</span> {
+        <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">100</span><span style="color:#960050;background-color:#1e0010">%</span>;
+      }
+    }
+  }
+}
+</code></pre></div><h2 id="organisms">Organisms</h2>
+<p>Organisms arrange molecules and atoms together, and in our case, it&rsquo;s the header.
+<img src="/images/atomic-organisms.png" alt="image alt text"></p>
+<h2 id="header-by-example">Header by example</h2>
+<p>The header organism represents the logo atom with the main navigation molecule and the search form molecule assemblies.</p>
+<blockquote>
+<p>Notice that molecules are aligned to the bottom and the main navigation is  extended. These properties should be described in our organism.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">.organism-header
+    .organism-header-logo
+        +atom-logo
+    .organism-header-navigation
+        +molecule-navigation
+    .organism-header-form-search
+        +molecule-form-search
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scss" data-lang="scss"><span style="color:#a6e22e">.organism-header</span> {
+  <span style="color:#f92672">display</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">flex</span>;
+  <span style="color:#f92672">&gt;</span> <span style="color:#f92672">[</span><span style="color:#f92672">class</span><span style="color:#f92672">^=</span><span style="color:#e6db74">&#34;organism-header&#34;</span><span style="color:#f92672">]</span> {
+    <span style="color:#f92672">margin-right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">40px</span>;
+    <span style="color:#f92672">align-self</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">flex-end</span>;
+    <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">:last-child</span> {
+      <span style="color:#f92672">margin-right</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">0</span>;
+    }
+  }
+  <span style="color:#a6e22e">.organism-header-navigation</span> {
+    <span style="color:#f92672">flex-grow</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">1</span>;
+  }
+  <span style="color:#a6e22e">.organism-header-form-search</span> {
+    <span style="color:#f92672">width</span><span style="color:#a6e22e">:</span> <span style="color:#f92672">250px</span>;
+  }
+}
+</code></pre></div><h2 id="templates-and-pages">Templates and pages</h2>
+<p><img src="/images/atomic-templates-pages.png" alt="image alt text">
+Templates represent the page structure. This step is just a canvas for our organisms. The template will be the model of our page, so the page is an instance of a template.
+<img src="/images/atomic-templates-pages-example.png" alt="image alt text"></p>
+<h2 id="organisation">Organisation</h2>
+<p>From previous examples, notice the decoupling of structures (HTML) and styles (CSS). These parts can be organised in many separate files using template languages like Pug and Sass.</p>
+<p>As a conclusion and to go further
+As we have seen, making Atomic Design components require breaking up elements. These elements have their responsibilities (label atom, form molecule …) and they can be modified independently. Moreover, their assembly is done in a structured way (atoms, molecules, organisms): they are consistent and maintainable.</p>
+<p>Decoupling can go even further by trying to use your own components instead of a specific framework.</p>
+<p>On Angular and Vue, I encourage you to make your style outside of your components using Sass in an external library, because, if you have a strong coupling, you may meet the following problems:</p>
+<ul>
+<li>
+<p>Global tokens (colors, font size, font family …) are less accessible and more complex to maintain.</p>
+</li>
+<li>
+<p>Component assembly (molecules, organisms) is less consistent and more difficult to manage.</p>
+</li>
+<li>
+<p>Global style vision is more complex because of components containing a lot of responsibilities: HTML template, TypeScript or JavaScript logic and CSS style.
+Sass usage to make a single file with several parts from atoms, molecules and organisms have the following advantages:</p>
+</li>
+<li>
+<p>Management of token variables</p>
+</li>
+<li>
+<p>Molecules and organisms management and definition using imports</p>
+</li>
+<li>
+<p>Unique style distribution from a single CSS file that can be imported in your HTML using <!-- raw HTML omitted --> tag</p>
+</li>
+</ul>
+<p>So, I advise you to make your own graphical Pattern Library using languages like Pug or Sass in order to describe implementations and usages of your atoms, molecules, organisms, templates and pages examples.</p>
+
+</div>
+
+
+  </main>
+
+  <footer>
+  <div>
+    &copy;  2020
+
+    
+
+    
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+  
+
+  
+</body>
+</html>
