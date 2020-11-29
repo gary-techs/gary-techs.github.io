@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.74.3" />
+
+  <title>Don&#39;t use context API for state management &middot; Gary talks tech</title>
+
+  <meta name="description" content="" />
+
+  
+
+<meta itemprop="name" content="Don&#39;t use context API for state management">
+<meta itemprop="description" content="React Context API is not a state management tool This may sound obvious, but React Context API is not a state management tool per-se.
+What I mean is that the Context alone is not enough to manage application&rsquo;s state without a companion hook like useState or useReducer.
+Creating a Context To create a new Context in React we call createContext():
+const MyContext = React.createContext(); Once a Context is in place we can provide an initial value to the Context Provider on the value prop:">
+<meta itemprop="datePublished" content="2020-11-20T09:45:14+04:00" />
+<meta itemprop="dateModified" content="2020-11-20T09:45:14+04:00" />
+<meta itemprop="wordCount" content="401">
+<meta itemprop="image" content="https://gary-techs.github.io/images/gary.png"/>
+
+
+
+<meta itemprop="keywords" content="React," />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://gary-techs.github.io/images/gary.png"/>
+
+<meta name="twitter:title" content="Don&#39;t use context API for state management"/>
+<meta name="twitter:description" content="React Context API is not a state management tool This may sound obvious, but React Context API is not a state management tool per-se.
+What I mean is that the Context alone is not enough to manage application&rsquo;s state without a companion hook like useState or useReducer.
+Creating a Context To create a new Context in React we call createContext():
+const MyContext = React.createContext(); Once a Context is in place we can provide an initial value to the Context Provider on the value prop:"/>
+
+
+<meta property="og:title" content="Don&#39;t use context API for state management" />
+<meta property="og:description" content="React Context API is not a state management tool This may sound obvious, but React Context API is not a state management tool per-se.
+What I mean is that the Context alone is not enough to manage application&rsquo;s state without a companion hook like useState or useReducer.
+Creating a Context To create a new Context in React we call createContext():
+const MyContext = React.createContext(); Once a Context is in place we can provide an initial value to the Context Provider on the value prop:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://gary-techs.github.io/posts/context-react/" />
+<meta property="og:image" content="https://gary-techs.github.io/images/gary.png"/>
+<meta property="article:published_time" content="2020-11-20T09:45:14+04:00" />
+<meta property="article:modified_time" content="2020-11-20T09:45:14+04:00" />
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+        <div class="author-image">
+          <img src="/images/gary.png" class="img-circle img-headshot center" alt="Profile Picture">
+        </div>
+        
+      
+
+      <h1>Gary talks tech</h1>
+
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://gary-techs.github.io/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+      <a href="https://www.linkedin.com/in/girishsharma2/" rel="me" title="Linkedin" target="_blank">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+      </a>
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1>Don&#39;t use context API for state management</h1>
+
+  <div class="post-date">
+    <time datetime="2020-11-20T09:45:14&#43;0400">Nov 20, 2020</time> &middot; 2 min read
+  </div>
+
+  <h2 id="react-context-api-is-not-a-state-management-tool">React Context API is not a state management tool</h2>
+<p>This may sound obvious, but <strong>React Context API is not a state management tool</strong> per-se.</p>
+<p>What I mean is that the <strong>Context alone is not enough to manage application&rsquo;s state</strong> without a companion hook like <strong>useState</strong> or <strong>useReducer</strong>.</p>
+<h2 id="creating-a-context">Creating a Context</h2>
+<p>To create a new Context in React we call <strong>createContext()</strong>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MyContext</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">createContext</span>();
+</code></pre></div><p>Once a Context is in place we can provide an initial value to the Context <strong>Provider</strong> on the value prop:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MyContext</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">createContext</span>();
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">App</span>() {
+
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Juliana&#34;</span>;
+
+  <span style="color:#66d9ef">return</span> (
+    &lt;<span style="color:#f92672">MyContext.Provider</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">userName</span>}&gt;
+    {<span style="color:#75715e">/* Some children */</span>}
+    &lt;/<span style="color:#f92672">MyContext.Provider</span>&gt;
+  );
+}
+</code></pre></div><p>However, this value is static, far from being a state management solution.</p>
+<h2 id="providing-state-to-the-context">Providing state to the Context</h2>
+<p>To make things dynamic, we can use useState or useReducer as a source for the Context value:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useState</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MyContext</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">createContext</span>();
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">App</span>() {
+  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">userName</span>, <span style="color:#a6e22e">setUserName</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#e6db74">&#34;Juliana&#34;</span>);
+
+  <span style="color:#75715e">// use setUserName() somewhere in the app to update the state  
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">return</span> (
+    &lt;<span style="color:#f92672">MyContext.Provider</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">userName</span>}&gt;
+    {<span style="color:#75715e">/* Some children */</span>}
+    &lt;/<span style="color:#f92672">MyContext.Provider</span>&gt;
+  );
+}
+</code></pre></div><h2 id="reading-the-context">Reading the Context</h2>
+<p>To access the Context value from any child component lower in the tree, we wrap said tree in a Provider:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useState</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MyContext</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">createContext</span>();
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">App</span>() {
+  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">userName</span>, <span style="color:#a6e22e">setUserName</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#e6db74">&#34;Juliana&#34;</span>);
+
+  <span style="color:#75715e">// use setUserName() somewhere in the app to update the state
+</span><span style="color:#75715e"></span>
+  <span style="color:#66d9ef">return</span> (
+    &lt;<span style="color:#f92672">MyContext.Provider</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">userName</span>}&gt;
+      &lt;<span style="color:#f92672">Header</span> /&gt;
+      &lt;<span style="color:#f92672">Footer</span> /&gt;
+    &lt;/<span style="color:#f92672">MyContext.Provider</span>&gt;
+  );
+}
+</code></pre></div><p>Then, to read the value from any child component we can either use Context Consumer with render props, or better, the useContext hook:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Header</span>() {
+
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useContext</span>(<span style="color:#a6e22e">MyContext</span>);
+
+  <span style="color:#66d9ef">return</span> (
+    &lt;<span style="color:#f92672">header</span>&gt;
+      &lt;<span style="color:#f92672">h1</span>&gt;<span style="color:#a6e22e">Hello</span> {<span style="color:#a6e22e">userName</span>}&lt;/<span style="color:#f92672">h1</span>&gt;
+    &lt;/<span style="color:#f92672">header</span>&gt;
+  );
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Footer</span>() {
+
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useContext</span>(<span style="color:#a6e22e">MyContext</span>);
+
+  <span style="color:#66d9ef">return</span> (
+    &lt;<span style="color:#f92672">footer</span>&gt;
+      &lt;<span style="color:#f92672">p</span>&gt;<span style="color:#a6e22e">Hello</span> {<span style="color:#a6e22e">userName</span>}&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;/<span style="color:#f92672">footer</span>&gt;
+  );
+}
+</code></pre></div><p><strong>Caveat</strong>: components connected to the Context with useContext don&rsquo;t bail out by default from re-rendering. See also useContext doc.</p>
+<h2 id="how-about-redux-vs-context-api">How about Redux vs Context API?</h2>
+<p>The false Redux vs Context API dichotomy is used as an argument to demonstrate that Context API completely supersedes Redux.</p>
+<p>This can&rsquo;t be farther from the truth. Alongside with the performance optimizations Redux offers out of the box, the <strong>Context API don&rsquo;t have</strong>:</p>
+<ul>
+<li>middleware.</li>
+<li>time travel.</li>
+<li>state persistence.
+All these feature must be implemented from scratch, with hooks. While this might sound feasible, reinventing the wheel is not always the best thing to do.</li>
+</ul>
+
+</div>
+
+
+  </main>
+
+  <footer>
+  <div>
+    &copy;  2020
+
+    
+
+    
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+  
+
+  
+</body>
+</html>
